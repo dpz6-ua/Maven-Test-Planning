@@ -1,0 +1,13 @@
+'mvn compile'
+- Resources de compilación
+- Compilación del proyecto (carpeta main)
+
+'mvn clean'
+- Borrado de la carpeta /target
+
+'mvn test'
+- Resources de compilación
+- Compilación del proyecto (carpeta main)
+- Resources de test
+- Compilación de los códigos de test (carpeta test)
+- Ejecución de tests

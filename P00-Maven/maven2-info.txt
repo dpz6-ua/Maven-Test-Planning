@@ -1,0 +1,64 @@
+'mvn compile'
+Después de hacer el mvn compile y el mvn test se puede ver que el proyecto se compila perfectamente pero al hacer mvn test, o al ejecutar las pruebas, ocurre que 3 tests han fallado en ejecución. Se muestran mensajes de Error y failure.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.973 s
+[INFO] Finished at: 2025-01-27T18:44:50+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project P00-maven2: There are test failures.
+[ERROR]
+[ERROR] See /mnt/c/Users/dawid/OneDrive/Documentos/PPSS/practicas/ppss-2025-G4-znojek/P00-Maven/P00-maven2/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+
+'quitar ; del .java'
+Al quitar el ; de la línea 6, se produce un error pero esta vez es de compilación, ya que antes de ejecutar la fase de test se hace la fase de compilación, por lo que si hay algún fallo de sintaxis se parará la ejecución de manera prematura y no se ejecutarán los tests.
+
+[INFO] --- compiler:3.13.0:compile (default-compile) @ P00-maven2 ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /mnt/c/Users/dawid/OneDrive/Documentos/PPSS/practicas/ppss-2025-G4-znojek/P00-Maven/P00-maven2/src/main/java/paquete2/Matricula.java:[6,29] ';' expected
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.229 s
+[INFO] Finished at: 2025-01-27T18:48:36+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project P00-maven2: Compilation failure
+[ERROR] /mnt/c/Users/dawid/OneDrive/Documentos/PPSS/practicas/ppss-2025-G4-znojek/P00-Maven/P00-maven2/src/main/java/paquete2/Matricula.java:[6,29] ';' expected
+
+'mvn test con *test.java modificado'
+En este caso, los archivos fuente del main se compilan correctamente y pasan a la siguiente fase. Al no compilar el código fuente de los tests, la build es errónea y no se ejecutan los tests.
+
+[INFO] --- compiler:3.13.0:compile (default-compile) @ P00-maven2 ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ P00-maven2 ---
+[INFO] skip non existing resourceDirectory /mnt/c/Users/dawid/OneDrive/Documentos/PPSS/practicas/ppss-2025-G4-znojek/P00-Maven/P00-maven2/src/test/resources
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ P00-maven2 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /mnt/c/Users/dawid/OneDrive/Documentos/PPSS/practicas/ppss-2025-G4-znojek/P00-Maven/P00-maven2/src/test/java/paquete2/MatriculaTest.java:[12,5] illegal start of expression
+[ERROR] /mnt/c/Users/dawid/OneDrive/Documentos/PPSS/practicas/ppss-2025-G4-znojek/P00-Maven/P00-maven2/src/test/java/paquete2/MatriculaTest.java:[12,16] ';' expected
+[INFO] 2 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.287 s
+[INFO] Finished at: 2025-01-27T18:52:36+01:00
+[INFO] ------------------------------------------------------------------------
+
+ 
+

@@ -1,0 +1,22 @@
+.
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── paquete1
+    │   │       ├── Matricula.java
+    │   │       └── Triangulo.java
+    │   └── resources
+    └── test
+        └── java
+            └── paquete1
+                ├── MatriculaTest.java
+                └── TrianguloTest.java
+
+. = carpeta que contiene todos los archivos y sub-carpetas con el código fuente, de los tests y otros archivos que se generan al ejecutar las pruebas
+src = contiene el código fuente del proyecto y el código de las pruebas
+main = contiene el código fuente del proyecto
+test = contiene el código fuente de las pruebas
+java = contiene los archivos .java del codigo fuente
+resources = contiene los archivos necesarios para ejecutar el código fuente
+paquete = Indica el paquete en el que se encuentra el código fuente
