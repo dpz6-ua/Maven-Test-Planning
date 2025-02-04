@@ -1,0 +1,101 @@
+﻿Ejercicio 1
+
+
+Desde la ventana Maven de IntelliJ vamos a COMPILAR los fuentes del proyecto usando la fase que ya hemos explicado en clase ¿Cuál es el resultado de la construcción del proyecto y por qué da ese resultado?
+
+
+* Compila el codigo fuente de src/main y crea la carpeta target, donde guarda los artefactos generados durante la compilación.
+
+
+Observa las GOALS que se ejecutan. ¿Por qué no aparecen los plugins correspondientes en el fichero pom.xml de nuestro proyecto?
+
+
+* Maven usa los plugins y goals por defecto del Super POM, del cual heredan todos los poms.xml
+
+
+También puedes comprobar que el plugin tiene dos goals, que hacen cosas diferentes y están asociadas a fases diferentes!! ¿cuáles son esas goals?
+
+
+* Compiler:compile, asociada a la fase de compilacion del main
+* Compiler:testCompiler, asociada a la fase de compilación del source code de los tests.
+
+
+Para compilar los tests con las dependencias necesarias. En el pom.xml:
+<dependencies>
+   <dependency>
+       <groupId>org.junit.jupiter</groupId>
+       <artifactId>junit-jupiter</artifactId>
+       <version>5.11.4</version>
+       <scope>test</scope>
+   </dependency>
+</dependencies>
+
+
+
+
+Compilar y ejecutar tests:
+
+
+* mvn test (pestaña de test)
+
+
+
+
+
+
+
+
+Como ya hemos ejecutado varias fases en esta práctica y en la anterior, Maven se habrá descargado los artefactos necesarios para construir el proyecto. Consulta tu repositorio local y LOCALIZA:
+
+
+* La librería de JUnit que acabas de añadir (usa sus coordenadas para localizar el fichero jar)
+   * Se almacena en la carpeta .m2/ → C:\Users\dawid\.m2\repository\org\junit\jupiter\junit-jupiter\5.11.4\junit-jupiter-5.11.4.jar!\module-info.class
+        
+* El plugin compiler que estás usando para compilar (usa sus coordenadas para localizar el Iicherojar) →
+   * C:\Users\dawid\.m2\repository\org\apache\maven\plugins\maven-compiler-plugin\3.13.0\maven-compiler-plugin-3.13.0.jar
+
+
+Añadir plugins o definirlos en el pom:
+<build>
+   <plugins>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <version>3.13.0</version>
+       </plugin>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-surefire-plugin</artifactId>
+           <version>3.5.2</version>
+       </plugin>
+   </plugins>
+</build>
+
+
+
+
+Package
+
+
+* La fase package se encuentra después de las fases vistas previamente (después de las pruebas de los tests).
+* Se ejecuta la siguiente goal:
+   *  jar:3.4.1:jar (default-jar) @ simpleMavenProject
+* Y genera un archivo de empaquetado JAR en la carpeta target:
+   * [INFO] Building jar: C:\Users\dawid\OneDrive\Documentos\PPSS\practicas\ppss-2025-G4-znojek\P01-IntelliJ\simpleMavenProject\target\simpleMavenProject-1.0-SNAPSHOT.jar
+
+
+Install
+
+
+* La fase install se encuentra después de las fases vistas previamente, casi la última.
+* Se ejecuta la siguiente goal:
+   *  install:3.1.2:install (default-install) @ simpleMavenProject
+* Se instala el .jar anterior en el repositorio local (~/.m2) junto con el .pom del proyecto.
+   * C:\Users\dawid\.m2\repository\ppss\P01\simpleMavenProject\1.0-SNAPSHOT\simpleMavenProject-1.0-SNAPSHOT.pom
+   * C:\Users\dawid\.m2\repository\ppss\P01\simpleMavenProject\1.0-SNAPSHOT\simpleMavenProject-1.0-SNAPSHOT.jar
+
+
+¿Para qué nos puede servir que el empaquetado de nuestro proyecto esté almacenado en nuestro repositorio local Maven?
+
+
+* Para poder usarlo en otros proyectos o trabajar de manera local.
