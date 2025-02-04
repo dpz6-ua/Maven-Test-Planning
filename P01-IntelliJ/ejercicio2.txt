@@ -1,0 +1,21 @@
+EJERCICIO 2:
+
+Run configurations para el proyecto Maven SimpleMavenProject:
+
+
+SimpleProject_CompileAll:
+	mvn clean compile testCompile  
+
+(realmente con solo testCompile se podría porque se ejecutarían las fases anteriores, entre las 
+que se encuentra la fase compile)
+
+
+SimpleProject_Run_tests:
+	mvn clean test
+
+SimpleProject_Compile_only_tests:
+	mvn clean compiler:compile compiler:testCompile
+
+(si no compilo el código fuente del main, siempre darán errores de compilación del código de test, ya
+que no encontraría las instancias nunca porque no se generarían los artefactos compilados del código del main
+Lo único que si los archivos necesitan resources, no deberían de poder ejecutar la fase previa de ambas?¿)
