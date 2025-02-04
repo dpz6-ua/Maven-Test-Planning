@@ -1,0 +1,38 @@
+EJERCICIO 3:
+
+- Comportamientos que pertenezcen al conjunto S:
+	(1) 29/02/2020 => true (año bisiesto)
+	(2) 31/01/2021 => true (enero tiene 31 días)
+	(3) 01/05/2025 => true (fecha correcta)
+
+- Comportamientos que pertenezcen al conjunto P:	
+	(1) 29/02/2021 => false (año no bisiesto)
+	(2) 31/09/2025 => false (septiembre tiene 30 días)
+
+- Comportamientos que pertenezcen a T
+   (1) 29/02/2020 => true
+   (2) Se llama a la función fechaValida con la fecha 29/02/2020
+   (3) Se espera que el resultado de la función sea true
+
+
+El proceso de AUTOMATIZACIÓN de las pruebas es posterior al proceso de diseño y consiste en:
+	(1) Ejecución del código de las pruebas
+	(2) Verificación de los resultados
+
+
+En el proyecto Maven simpleMavenProject,
+
+el subproceso (1) de la automatización lo hemos realizado porque:
+	para poder realizar las pruebas, se tiene que ejecutar el código (previamente compilado) con los elementos del código ubicado en el main.
+
+
+el subproceso (2) de la automatización lo hemos realizado porque:
+    cuando se ejecuta el código, el siguiente paso es validar y verificar la prueba, es decir, ver si el resultado de la prueba es el mismo que el que esperamos.
+
+
+
+
+C1_fechaValida_should_be_true_when_dia_31_and_mes_8
+
+En la función de fechaValida(...), hay que añadir el 'case 8': para que el valor máximo del mes de agosto sea 31.
+
