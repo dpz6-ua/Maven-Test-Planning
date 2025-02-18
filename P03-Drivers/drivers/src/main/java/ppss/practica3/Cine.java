@@ -1,5 +1,5 @@
 package ppss.practica3;
-
+//David
 public class Cine {
     public boolean reservaButacas(boolean[] asientos, int solicitados) throws ButacasException {
         if (asientos.length == 0) {
