@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run_CineTest_with_html_report" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="Run_DataArrayTest" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
@@ -12,10 +12,8 @@
           <option name="goals">
             <list>
               <option value="clean" />
-              <option value="jxr:test-jxr" />
-              <option value="surefire-report:report" />
-              <option value="-Dtest=CineTest" />
-              <option value="-DexcludedGroups=parametrizado" />
+              <option value="test" />
+              <option value="-Dtest=DataArrayTest" />
             </list>
           </option>
           <option name="multimoduleDir" />

@@ -1,7 +1,13 @@
 package ppss.practica3;
 //David
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,6 +63,25 @@ class CineTest {
         assertAll("C4 shall refuse the reservation due to lack of available space",
                 () -> assertFalse(actual),
                 () -> assertArrayEquals(arrayEsperado, asientos));
+    }
+
+    @ParameterizedTest(name = "[{index}] should be {0} when we want {2} and {3}")
+    @MethodSource("casosDePrueba")
+    @Tag("parametrizado")
+    @DisplayName("C5_reservaButacas_")
+    void C5_reservaButacas(boolean expected, boolean[] asientos, int solicitados, String mensaje) throws ButacasException{
+        Cine cine = new Cine();
+        boolean resultado = cine.reservaButacas(asientos, solicitados);
+        assertEquals(expected, resultado, "No pasa el test");
+    }
+
+
+    private static Stream<Arguments> casosDePrueba() {
+        return Stream.of(
+                Arguments.of(false, new boolean[]{}, 0, "fila has no seats"),
+                Arguments.of(true, new boolean[]{false, false, false, true, true}, 2, "there are 2 free seats"),
+                Arguments.of(false, new boolean[]{true, true, true}, 1, "all seats are already reserved")
+        );
     }
 
 }
