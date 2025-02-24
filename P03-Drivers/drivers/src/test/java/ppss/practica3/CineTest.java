@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Tests asociados a la clase Cine")
 class CineTest {
     @Test
-    void C1_reservaButacas_should_return_Exception_when_fila_empty_and_want_3() throws ButacasException{
+    void C1_reservaButacas_should_return_Exception_when_fila_empty_and_want_3() {
         boolean[] asientos = {};
         int solicitados = 3;
         Cine cine = new Cine();
@@ -24,44 +24,44 @@ class CineTest {
     }
 
     @Test
-    void C2_reservaButacas_should_return_false_when_fila_empty_and_want_zero() throws ButacasException{
+    void C2_reservaButacas_should_return_false_when_fila_empty_and_want_zero(){
         boolean[] asientos = {};
         boolean[] arrayEsperado = {};
         int solicitados = 0;
 
         Cine cine = new Cine();
-        boolean actual = cine.reservaButacas(asientos, solicitados);
 
         assertAll("C2 should not complete the reservation due to empty array and 0 ordered seats",
-                () -> assertFalse(actual),
+                () -> assertDoesNotThrow(() -> {cine.reservaButacas(asientos, solicitados);}),
+                () -> assertFalse(cine.reservaButacas(asientos, solicitados)),
                 () -> assertArrayEquals(arrayEsperado, asientos));
     }
 
     @Test
-    void C3_reservaButacas_should_return_true_when_fila_has_3_seats_free_and_want_2() throws ButacasException{
+    void C3_reservaButacas_should_return_true_when_fila_has_3_seats_free_and_want_2() {
         boolean[] asientos = {false, false, false, true, true};
         boolean[] arrayEsperado = {true, true, false, true, true};
         int solicitados = 2;
 
         Cine cine = new Cine();
-        boolean actual = cine.reservaButacas(asientos, solicitados);
+        boolean resultado = assertDoesNotThrow(() -> cine.reservaButacas(asientos, solicitados));
 
         assertAll("C3 should make the reservation and change the status of the reserved seats",
-                () -> assertTrue(actual),
+                () -> assertTrue(resultado),
                 () -> assertArrayEquals(arrayEsperado, asientos));
     }
 
     @Test
-    void C4_reservaButacas_should_return_false_when_no_free_seats_and_want_1() throws ButacasException{
+    void C4_reservaButacas_should_return_false_when_no_free_seats_and_want_1() {
         boolean[] asientos = {true, true, true};
         boolean[] arrayEsperado = {true, true, true};
         int solicitados = 1;
 
         Cine cine = new Cine();
-        boolean actual = cine.reservaButacas(asientos, solicitados);
+        boolean resultado = assertDoesNotThrow(() -> cine.reservaButacas(asientos, solicitados));
 
         assertAll("C4 shall refuse the reservation due to lack of available space",
-                () -> assertFalse(actual),
+                () -> assertFalse(resultado),
                 () -> assertArrayEquals(arrayEsperado, asientos));
     }
 
@@ -69,9 +69,9 @@ class CineTest {
     @MethodSource("casosDePrueba")
     @Tag("parametrizado")
     @DisplayName("C5_reservaButacas_")
-    void C5_reservaButacas(boolean expected, boolean[] asientos, int solicitados, String mensaje) throws ButacasException{
+    void C5_reservaButacas(boolean expected, boolean[] asientos, int solicitados, String mensaje){
         Cine cine = new Cine();
-        boolean resultado = cine.reservaButacas(asientos, solicitados);
+        boolean resultado = assertDoesNotThrow( () -> cine.reservaButacas(asientos, solicitados));
         assertEquals(expected, resultado, "No pasa el test");
     }
 

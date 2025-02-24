@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class DataArrayTest {
 
     @Test
-    void C1_delete_should_return_3_elements_when_erasing_num() throws DataException {
+    void C1_delete_should_return_3_elements_when_erasing_num() {
         int[] datos = {1,3,5,7};
         int[] expected = {1,3,7};
         int expectedElements = 3;
         DataArray da = new DataArray(datos);
 
-        da.delete(5);
+        assertDoesNotThrow(()-> da.delete(5));
 
         assertAll("C1 should execute well operation",
                 () -> assertArrayEquals(expected, da.getColeccion()),
@@ -28,13 +28,13 @@ class DataArrayTest {
     }
 
     @Test
-    void C2_delete_should_return_4_elements_when_erasing_num_once() throws DataException {
+    void C2_delete_should_return_4_elements_when_erasing_num_once() {
         int[] datos = {1,3,3,5,7};
         int[] expected = {1,3,5,7};
         int expectedElements = 4;
 
         DataArray da = new DataArray(datos);
-        da.delete(3);
+        assertDoesNotThrow(()-> da.delete(3));
 
         assertAll("C2 shall erase given instance once when existing more than one",
                 () -> assertArrayEquals(expected, da.getColeccion()),
@@ -42,13 +42,13 @@ class DataArrayTest {
     }
 
     @Test
-    void C3_delete_should_return_9_elements_when_erasing_1_num_from_10() throws DataException {
+    void C3_delete_should_return_9_elements_when_erasing_1_num_from_10() {
         int[] datos = {1,2,3,4,5,6,7,8,9,10};
         int[] expected = {1,2,3,5,6,7,8,9,10};
         int expectedElements = 9;
 
         DataArray da = new DataArray(datos);
-        da.delete(4);
+        assertDoesNotThrow(()-> da.delete(4));
 
         assertAll("C3 shall erase 1 element and decrease size to 9",
                 () -> assertArrayEquals(expected,da.getColeccion()),
@@ -115,9 +115,9 @@ class DataArrayTest {
     @MethodSource("casosSinExcepcion")
     @Tag("parametrizado")
     @DisplayName("C9_delete_Without_Exceptions_")
-    void C9_delete_Without_Exceptions(int[] expected, int borrados, int[] datos) throws DataException {
+    void C9_delete_Without_Exceptions(int[] expected, int borrados, int[] datos) {
         DataArray da = new DataArray(datos);
-        da.delete(borrados);
+        assertDoesNotThrow(()-> da.delete(borrados));
         assertAll(() -> assertArrayEquals(expected, da.getColeccion()),
                   () -> assertEquals(expected.length, da.size()));
     }

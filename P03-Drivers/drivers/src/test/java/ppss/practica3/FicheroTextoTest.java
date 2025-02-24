@@ -17,12 +17,13 @@ class FicheroTextoTest {
     }
 
     @Test
-    void C2_contarCaracteres_should_return_3_when_file_has_3_chars() throws FicheroException {
+    void C2_contarCaracteres_should_return_3_when_file_has_3_chars() {
         String ficheroC2 = "src/test/resources/ficheroCorrecto.txt";
         FicheroTexto texto = new FicheroTexto();
         int caracteresEsperados = 3;
 
-        assertEquals(caracteresEsperados, texto.contarCaracteres(ficheroC2));
+        int resultado = assertDoesNotThrow(()-> texto.contarCaracteres(ficheroC2));
+        assertEquals(caracteresEsperados, resultado);
     }
 
     @Test
