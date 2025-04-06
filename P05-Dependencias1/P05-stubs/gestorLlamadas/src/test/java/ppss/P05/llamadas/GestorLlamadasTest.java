@@ -10,11 +10,13 @@ public class GestorLlamadasTest {
     public void C1_calculaConsumo_should_return_207_when_m_10_and_h_12(){
         CalendarioSTUB c = new CalendarioSTUB();
         c.setHoraActual(12);
+
         int minutos = 10;
         double esperado = 207;
 
-        GestorLlamadas gestor = new GestorLlamadas();
-        double resultado = gestor.calculaConsumo(minutos, c);
+        GestorLlamadasTestable gestor = new GestorLlamadasTestable();
+        gestor.setCalendarioSTUB(c);
+        double resultado = gestor.calculaConsumo(minutos);
 
         assertEquals(esperado, resultado);
     }
@@ -26,8 +28,9 @@ public class GestorLlamadasTest {
         int minutos = 10;
         double esperado = 122;
 
-        GestorLlamadas gestor = new GestorLlamadas();
-        double resultado = gestor.calculaConsumo(minutos, c);
+        GestorLlamadasTestable gestor = new GestorLlamadasTestable();
+        gestor.setCalendarioSTUB(c);
+        double resultado = gestor.calculaConsumo(minutos);
 
         assertEquals(esperado, resultado);
     }
