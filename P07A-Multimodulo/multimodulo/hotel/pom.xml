@@ -6,7 +6,6 @@
         <artifactId>multimodulo</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>ppss.P07A</groupId>
     <artifactId>hotel</artifactId>
     <packaging>pom</packaging>
     <name>hotel</name>
